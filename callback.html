@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok sign-in – MAJIN Clip Uploader</title><link rel="stylesheet" href="style.css"></head><body><main><nav><a href="./">Start</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></nav>
+<h1>TikTok sign-in</h1>
+<div class="box" id="box">Reading the sign-in result …</div>
+<script>
+const p=new URLSearchParams(location.search),box=document.getElementById('box');
+if(p.get('code')){box.innerHTML='<p><b>Fertig.</b> Kopiere diesen Code in den MAJIN Hub (Clips → TikTok verbinden):</p><code id="c"></code><p><button id="b">Code kopieren</button></p>';
+document.getElementById('c').textContent=p.get('code')+'|'+(p.get('state')||'');
+document.getElementById('b').onclick=()=>navigator.clipboard.writeText(document.getElementById('c').textContent).then(()=>document.getElementById('b').textContent='Kopiert ✓');}
+else box.textContent='Anmeldung abgebrochen: '+(p.get('error_description')||p.get('error')||'kein Code erhalten.');
+</script></main></body></html>
